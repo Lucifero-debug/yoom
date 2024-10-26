@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation';
 import { Textarea } from './ui/textarea';
 import ReactDatePicker from 'react-datepicker';
@@ -25,6 +25,7 @@ function Card() {
   const {user} = useUser();
   const { toast } = useToast();
   const client = useStreamVideoClient();
+  const [meetingLink, setMeetingLink] = useState("");
   
   const createMeeting = async () => {
     if (!client || !user) return;
@@ -61,10 +62,14 @@ function Card() {
     }
   };
 
-  console.log("call detail-",callDetail)
+  useEffect(() => {
+    if (typeof window !== "undefined" && callDetail?.id) {
+      const currentDomain = window.location.origin;
+      setMeetingLink(`${currentDomain}/meeting/${callDetail?.id}`);
+    }
+  }, [callDetail?.id]);
   if (!client || !user) return <Loader />;
 
-  const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetail?.id}`;
 
   return (
     <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4 w-full">
