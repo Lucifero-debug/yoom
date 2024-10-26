@@ -42,9 +42,9 @@ const MeetingRoom = () => {
       case 'grid':
         return <PaginatedGridLayout />;
       case 'speaker-right':
-        return <SpeakerLayout participantsBarPosition="left" />;
-      default:
         return <SpeakerLayout participantsBarPosition="right" />;
+      default:
+        return <SpeakerLayout participantsBarPosition="left" />;
     }
   };
 
@@ -56,15 +56,15 @@ const MeetingRoom = () => {
         </div>
         <div
           className={cn('h-[calc(100vh-86px)] hidden ml-2', {
-            'show-block': showParticipants,
+            'block': showParticipants,
           })}
         >
-          <CallParticipantsList onClose={() => setShowParticipants(false)} />
+          <CallParticipantsList onClose={() => setShowParticipants(false)}  />
         </div>
       </div>
       {/* video layout and call controls */}
-      <div className="fixed bottom-0 flex w-full items-center justify-center gap-5">
-        <CallControls onLeave={() => router.push(`/`)} />
+      <div className="fixed bottom-0 grid grid-cols-2 md:flex w-full items-center justify-center gap-5">
+  <CallControls onLeave={() => router.push(`/`)} />
 
         <DropdownMenu>
           <div className="flex items-center">
@@ -90,7 +90,7 @@ const MeetingRoom = () => {
         <CallStatsButton />
         <button onClick={() => setShowParticipants((prev) => !prev)}>
           <div className=" cursor-pointer rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]  ">
-            <Users size={20} className="text-white" />
+            <Users size={20} className="text-white " />
           </div>
         </button>
         {!isPersonalRoom && <EndCallButton />}
