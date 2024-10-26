@@ -1,6 +1,5 @@
 import Upcoming from '../../../components/Upcoming'
 import Card from '../../../components/Card'
-import Meeting from '../../../components/CallList'
 import CallList from '../../../components/CallList';
 
 export default function Home() {
@@ -16,9 +15,7 @@ export default function Home() {
         <h1 className="font-bold text-2xl">Today&apos;s Upcoming Meetings</h1>
         <a href="#" className="text-[rgba(255,255,255,0.25)] text-lg">See all</a>
       </div>   
-      <div className="tail flex gap-2">
       <CallList type='upcoming'/>
-      </div>
       </div>
     </div>
     </div>
