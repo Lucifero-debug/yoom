@@ -50,12 +50,12 @@ const MeetingRoom = () => {
 
   return (
     <section className="relative h-screen w-full overflow-hidden pt-4 text-white">
-      <div className="relative flex size-full items-center justify-center">
+      <div className="relative flex sm:flex-row flex-col justify-start size-full sm:items-center  sm:justify-center">
         <div className=" flex size-full max-w-[1000px] items-center">
           <CallLayout />
         </div>
         <div
-          className={cn('h-[calc(100vh-86px)] hidden ml-2 bg-black w-[calc(45vw-300px)]', {
+          className={cn('h-[calc(100vh-86px)] hidden ml-2 bg-black', {
             'block': showParticipants,
           })}
         >
@@ -63,12 +63,12 @@ const MeetingRoom = () => {
         </div>
       </div>
       {/* video layout and call controls */}
-      <div className="fixed bottom-0 grid grid-cols-2 md:flex w-full items-center justify-center gap-5">
+      <div className="fixed bottom-0  flex w-full items-center justify-center gap-5">
   <CallControls onLeave={() => router.push(`/`)} />
 
         <DropdownMenu>
           <div className="flex items-center">
-            <DropdownMenuTrigger className="cursor-pointer rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]  ">
+            <DropdownMenuTrigger className="cursor-pointer rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]">
               <LayoutList size={20} className="text-white" />
             </DropdownMenuTrigger>
           </div>
