@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useGetCallById } from "../../../../hooks/useGetCallById";
 import { Button } from "../../../../components/ui/button";
 import { useToast } from "../../../../components/ui/use-toast";
+import { useState } from "react";
 
 const Table = ({
   title,
@@ -29,10 +30,18 @@ const PersonalRoom = () => {
   const { user } = useUser();
   const client = useStreamVideoClient();
   const { toast } = useToast();
+  const [meetingLink, setMeetingLink] = useState("");
 
   const meetingId = user?.id;
 
   const { call } = useGetCallById(meetingId);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && meetingId) {
+      const currentDomain = window.location.origin;
+      setMeetingLink(`${currentDomain}/meeting/${meetingId}?personal=true`);
+    }
+  }, [meetingId]);
 
   const startRoom = async () => {
     if (!client || !user) return;
@@ -50,7 +59,6 @@ const PersonalRoom = () => {
     router.push(`/Meeting/${meetingId}?personal=true`);
   };
 
-  const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meetingId}?personal=true`;
 
   return (
     <section className="flex size-full flex-col gap-10 text-white">
