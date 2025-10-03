@@ -11,7 +11,6 @@ export default function Home() {
         <Card/>
       </div>
       <div className="last flex text-white flex-col mt-4 gap-3">
-      <CallList type='upcoming'/>
       </div>
     </div>
     </div>
