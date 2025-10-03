@@ -11,10 +11,6 @@ export default function Home() {
         <Card/>
       </div>
       <div className="last flex text-white flex-col mt-4 gap-3">
-      <div className="head flex justify-between pl-3 pr-3">
-        <h1 className="font-bold text-2xl">Today&apos;s Upcoming Meetings</h1>
-        <a href="#" className="text-[rgba(255,255,255,0.25)] text-lg">See all</a>
-      </div>   
       <CallList type='upcoming'/>
       </div>
     </div>
